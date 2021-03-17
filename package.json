@@ -1,0 +1,40 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:cjuniordev/messenger.git",
+  "author": "Agleylson Melo <agleylsonmelo@outlook.com>",
+  "license": "MIT",
+  "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "lint-staged": {
+    "packages/**/*.js": [
+      "eslint . --ext .js --fix"
+    ]
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+
+  "devDependencies": {
+    "cz-conventional-changelog": "3.3.0",
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
+    "commitizen": "^4.2.3",
+    "husky": "^5.1.3",
+    "lint-staged": "^10.5.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
