@@ -1,13 +1,19 @@
 import express from 'express'
-
-const app = express()
+import { createServer } from 'http'
+import { Server } from 'socket.io'
 
 const PORT = process.env.PORT || 3333
+const app = express()
+const httpServer = createServer()
 
-app.get('/', (request, response) => {
-  return response.json({ hello: "world" })
+const io = new Server(httpServer, {
+  // ...
 })
 
-app.listen(PORT, () => {
+io.on('connection', (socket) => {
+  // ...
+})
+
+httpServer.listen(PORT, () => {
   console.log(`Server running in port ${PORT}`)
 })
