@@ -1,11 +1,7 @@
-import { io } from 'socket.io-client'
-const socket = io('http://localhost:3333');
+import api from './services/api';
 
 function App() {
-  socket.on('connect', () => {
-    console.log(socket)
-  })
-
+  api();
   return (
     <>
       Hello World
