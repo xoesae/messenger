@@ -15,14 +15,15 @@ const io = new Server(httpServer, {
 let messages = []
 
 io.on('connection', (socket) => {
-  socket.emit('messages', messages)
+  io.emit('messages', messages)
 
   socket.on('message', (arg) => {
     messages.push(arg)
-    console.log(messages)
-    socket.emit('messages', messages)
+    io.emit('messages', messages)
   })
 })
+
+
 
 httpServer.listen(PORT, () => {
   console.log(`Server running in port ${PORT}`)
