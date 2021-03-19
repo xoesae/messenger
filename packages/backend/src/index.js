@@ -7,11 +7,13 @@ const app = express()
 const httpServer = createServer()
 
 const io = new Server(httpServer, {
-  // ...
+  cors: {
+    origin: '*',
+  }
 })
 
 io.on('connection', (socket) => {
-  // ...
+  console.log(socket)
 })
 
 httpServer.listen(PORT, () => {
