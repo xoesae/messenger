@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Input, Button } from '@material-ui/core'
+import { SendMessage, InputContainer } from './style';
 
 import { io } from 'socket.io-client'
 const socket = io('http://localhost:3333')
@@ -28,16 +29,19 @@ function Main() {
   return (
     <div>
       {messages.map((msg, i) => {
-           console.log(msg);
            return (<p>{msg}</p>)
       })}
-      <Input
-        type="text"
-        placeholder="Type a message"
-        inputRef={input}
-        onChange={handleChange}
-      />
-      <Button onClick={handleClick}>Enviar</Button>
+      <SendMessage>
+      <InputContainer>
+        <Input
+          type="text"
+          placeholder="Type a message"
+          inputRef={input}
+          onChange={handleChange}
+        />
+      </InputContainer>
+        <Button onClick={handleClick}>Enviar</Button>
+      </SendMessage>
     </div>
   );
 }
