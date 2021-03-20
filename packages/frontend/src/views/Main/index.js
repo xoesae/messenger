@@ -29,7 +29,7 @@ function Main() {
   return (
     <div>
       {messages.map((msg, i) => {
-           return (<p>{msg}</p>)
+           return (<p key={msg}>{msg}</p>)
       })}
       <SendMessage>
       <InputContainer>
