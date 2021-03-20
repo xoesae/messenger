@@ -27,7 +27,10 @@ function App() {
 
   return (
     <div>
-      <p>{messages}</p>
+      {messages.map((msg, i) => {
+           console.log(msg);
+           return (<p>{msg}</p>)
+      })}
       <Input
         type="text"
         placeholder="Type a message"
