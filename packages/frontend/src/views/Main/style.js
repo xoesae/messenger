@@ -40,6 +40,8 @@ export const ButtonContainer = styled.div`
 `;
 
 export const Message = styled.p`
+  width: 50%;
+  
   padding: 10px;
   border-radius: 5px 5px 5px 0;
 
