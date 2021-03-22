@@ -21,16 +21,19 @@ function Main() {
   }
 
   function handleClick(){
-    socket.emit('message', message)
-    input.current.value = ''
-    handleChange()
+    if(!message.length === 0 || message.trim()){
+      console.log('enviado', message)
+      socket.emit('message', message)
+      input.current.value = ''
+      handleChange()
+    }
   }
 
   return (
     <>
       <Container>
         {messages.map((msg, i) => {
-             return (<Message key={msg}>{msg}</Message>)
+             return (<Message key={i}>{msg}</Message>)
         })}
       </Container>
       <SendMessage>
