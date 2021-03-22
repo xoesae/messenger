@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Input, Button } from '@material-ui/core'
-import { SendMessage, InputContainer } from './style';
+import { Container, SendMessage, InputContainer, ButtonContainer, Message } from './style';
 
 import { io } from 'socket.io-client'
 const socket = io('http://localhost:3333')
@@ -27,22 +27,26 @@ function Main() {
   }
 
   return (
-    <div>
-      {messages.map((msg, i) => {
-           return (<p key={msg}>{msg}</p>)
-      })}
+    <>
+      <Container>
+        {messages.map((msg, i) => {
+             return (<Message key={msg}>{msg}</Message>)
+        })}
+      </Container>
       <SendMessage>
-      <InputContainer>
-        <Input
-          type="text"
-          placeholder="Type a message"
-          inputRef={input}
-          onChange={handleChange}
-        />
-      </InputContainer>
-        <Button onClick={handleClick}>Enviar</Button>
+        <InputContainer>
+          <Input
+            type="text"
+            placeholder="Type a message"
+            inputRef={input}
+            onChange={handleChange}
+          />
+        </InputContainer>
+        <ButtonContainer>
+          <Button onClick={handleClick}>Enviar</Button>
+        </ButtonContainer>
       </SendMessage>
-    </div>
+    </>
   );
 }
 

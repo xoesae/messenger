@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+export const Container = styled.div`
+  box-sizing: border-box;
+  padding: 0 20px;
+`;
+
 export const SendMessage = styled.div`
   width: 100%;
 
@@ -13,7 +18,7 @@ export const SendMessage = styled.div`
   position: fixed;
   bottom: 0;
 
-  padding-bottom: 50px;
+  padding: 0 20px 50px;
 `;
 
 export const InputContainer = styled.div`
@@ -21,4 +26,15 @@ export const InputContainer = styled.div`
   & > * {
     width: 100%;
   }
+`;
+
+export const ButtonContainer = styled.div`
+  width: 10%;
+  & > * {
+    width: 100%;
+  }
+`;
+
+export const Message = styled.p`
+  background-color: #F6F7FD;
 `;
