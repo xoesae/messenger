@@ -7,7 +7,7 @@ const socket = io('http://localhost:3333')
 
 function Main() {
   const [messages, setMessages] = useState([])
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState({})
   let input = useRef(null)
 
   socket.on('connect', () => {
@@ -17,11 +17,11 @@ function Main() {
   })
 
   function handleChange() {
-    setMessage(input.current.value)
+    setMessage({id: socket.id, value: input.current.value})
   }
 
   function handleClick(){
-    if(!message.length === 0 || message.trim()){
+    if(!message.value.length === 0 || message.value.trim()){
       socket.emit('message', message)
       input.current.value = ''
       handleChange()
@@ -38,7 +38,7 @@ function Main() {
     <>
       <Container>
         {messages.map((msg, i) => {
-             return (<Message key={i}>{msg}</Message>)
+             return (<Message key={i}>{msg.value}</Message>)
         })}
       </Container>
       <SendMessage>
