@@ -37,7 +37,8 @@ export const ButtonContainer = styled.div`
 
 export const Message = styled.p`
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px 5px 5px 0;
 
-  background-color: #F6F7FD;
+  background-color: #2A5176;
+  color: #FAFAFA;
 `;
