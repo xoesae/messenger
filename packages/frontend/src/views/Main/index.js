@@ -22,7 +22,6 @@ function Main() {
 
   function handleClick(){
     if(!message.length === 0 || message.trim()){
-      console.log('enviado', message)
       socket.emit('message', message)
       input.current.value = ''
       handleChange()
