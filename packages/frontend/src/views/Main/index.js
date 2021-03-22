@@ -29,6 +29,12 @@ function Main() {
     }
   }
 
+  function handleKeyPress(event){
+    if(event.key === 'Enter'){
+      handleClick()
+    }
+  }
+
   return (
     <>
       <Container>
@@ -43,6 +49,7 @@ function Main() {
             placeholder="Type a message"
             inputRef={input}
             onChange={handleChange}
+            onKeyPress={handleKeyPress}
           />
         </InputContainer>
         <ButtonContainer>
