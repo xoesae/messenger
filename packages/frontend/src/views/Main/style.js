@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  height: 85vh;
+
   box-sizing: border-box;
   padding: 0 20px;
+
+  overflow: scroll;
 `;
 
 export const SendMessage = styled.div`
