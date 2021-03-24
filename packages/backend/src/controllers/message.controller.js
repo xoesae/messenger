@@ -12,9 +12,13 @@ messageController.allMessages = async function () {
 }
 
 messageController.newMessage = async function (msg) {
-  let message = new Message(msg)
-  message = await message.save()
-  return message
+  try{
+    let message = new Message(msg)
+    message = await message.save()
+    return message
+  } catch(err){
+    console.log(err)
+  }
 }
 
 export default messageController
