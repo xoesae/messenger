@@ -25,6 +25,10 @@ $ cd messenger
 $ yarn install
 ```
 
+### Config enviroment variables
+- Create `.env` file
+- Config your `.env` based on `.env.example`
+
 #### Now, run the frontend and backend
 
 ```
