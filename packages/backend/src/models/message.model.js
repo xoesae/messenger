@@ -1,9 +1,11 @@
 import mongoose from 'mongoose'
-const { Schema } = mongoose
+const { Schema, model } = mongoose
 
 const messageSchema = new Schema({
   author: String,
   text:  String,
 })
 
-export default messageSchema
+const Message = model('Message', messageSchema)
+
+export default Message

@@ -1,7 +1,5 @@
-import { model } from 'mongoose'
-import messageSchema from '../schemas/message.schema'
+import Message from '../models/message.model'
 
-const Message = model('Message', messageSchema)
 const messageController = {}
 
 messageController.newMessage = async (req, res) => {
