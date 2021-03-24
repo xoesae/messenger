@@ -2,12 +2,10 @@ import Message from '../models/message.model'
 
 const messageController = {}
 
-messageController.newMessage = async (req, res) => {
-  const message = new Message({ author: 'sidnisadnasdld', text: 'my text' })
-  message.save((err) => {
-    if (err) return handleError(err)
-    return message
-  })
+messageController.newMessage = async function () {
+  let message = new Message({ author: 'sidnisadnasdld', text: 'my text' })
+  message = await message.save()
+  return message
 }
 
 export default messageController

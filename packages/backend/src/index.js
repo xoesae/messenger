@@ -3,6 +3,8 @@ import { createServer } from 'http'
 import { Server } from 'socket.io'
 import database from './config/db.config'
 
+import messageController from './controllers/message.controller'
+
 const PORT = process.env.PORT || 3333
 const app = express()
 const httpServer = createServer()
