@@ -11,8 +11,8 @@ messageController.allMessages = async function () {
   }
 }
 
-messageController.newMessage = async function () {
-  let message = new Message({ author: 'sidnisadnasdld', text: 'my text' })
+messageController.newMessage = async function (msg) {
+  let message = new Message(msg)
   message = await message.save()
   return message
 }
