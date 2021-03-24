@@ -1,6 +1,7 @@
 import express from 'express'
 import { createServer } from 'http'
 import { Server } from 'socket.io'
+import database from './config/db.config'
 
 const PORT = process.env.PORT || 3333
 const app = express()
@@ -12,6 +13,10 @@ const io = new Server(httpServer, {
   }
 })
 
+if(database){
+  console.log('Database connect with sucess')
+}
+
 let messages = []
 
 io.on('connection', (socket) => {
@@ -22,8 +27,6 @@ io.on('connection', (socket) => {
     io.emit('messages', messages)
   })
 })
-
-
 
 httpServer.listen(PORT, () => {
   console.log(`Server running in port ${PORT}`)
