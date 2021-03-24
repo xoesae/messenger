@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const db = mongoose.connection
 
 mongoose.connect(
-  'mongodb://localhost/messenger',
+  `mongodb://localhost/${process.env.DB_NAME}`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
