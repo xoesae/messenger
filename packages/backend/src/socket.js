@@ -1,10 +1,7 @@
-import express from 'express'
 import { Server } from 'socket.io'
 
 import database from './config/db.config'
 import messageController from './controllers/message.controller'
-
-const app = express()
 
 async function socket(httpServer){
 
