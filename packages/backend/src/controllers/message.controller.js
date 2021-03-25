@@ -4,10 +4,10 @@ const messageController = {}
 
 messageController.allMessages = async function () {
   try{
-    const messages = await Message.find({})
-    return messages
+    const msgs = await Message.find({})
+    return { sucess: true, messages: msgs }
   } catch(err){
-    console.log(err)
+    return { sucess: false, message: 'an error ocurred', error: err }
   }
 }
 
