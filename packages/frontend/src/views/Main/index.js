@@ -7,7 +7,7 @@ const socket = io('http://localhost:3333')
 
 function Main() {
   const [messages, setMessages] = useState([])
-  const [message, setMessage] = useState({id: socket.id, value: ''})
+  const [message, setMessage] = useState({author: socket.id, text: ''})
   let input = useRef(null)
 
   socket.on('connect', () => {
@@ -17,13 +17,13 @@ function Main() {
   })
 
   function handleKeyUp() {
-    setMessage({id: socket.id, value: input.current.value})
+    setMessage({author: socket.id, text: input.current.value})
   }
 
   function handleClick(){
-    if(!message.value.length === 0 || message.value.trim()){
+    if(!message.text.length === 0 || message.text.trim()){
       socket.emit('message', message)
-      input.current.value = ''
+      input.current.text = ''
       handleKeyUp()
     }
   }
@@ -38,10 +38,10 @@ function Main() {
     <>
       <Container>
         {messages.map((msg, i) => {
-          if(msg.id === socket.id){
-            return (<Message key={i} author={0}>{msg.value}</Message>)
+          if(msg.author === socket.id){
+            return (<Message key={i} author={0}>{msg.text}</Message>)
           } else{
-            return (<Message key={i} author={1}>{msg.value}</Message>)
+            return (<Message key={i} author={1}>{msg.text}</Message>)
           }
         })}
       </Container>
