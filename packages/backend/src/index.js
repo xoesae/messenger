@@ -1,3 +1,4 @@
+require('dotenv').config()
 import express from 'express'
 import { createServer } from 'http'
 import { Server } from 'socket.io'
@@ -25,6 +26,9 @@ io.on('connection', (socket) => {
   io.emit('messages', messages)
 
   socket.on('message', (arg) => {
+    messageController.newMessage(arg).then((res) => {
+      console.log(res)
+    })
     messages.push(arg)
     io.emit('messages', messages)
   })

@@ -26,6 +26,8 @@ $ yarn install
 ```
 
 ### Config enviroment variables
+- Go to backend:
+  - `cd packages/backend/`
 - Create `.env` file
 - Config your `.env` based on `.env.example`
 

@@ -23,12 +23,11 @@
       "packages/*"
     ]
   },
-
   "devDependencies": {
-    "cz-conventional-changelog": "3.3.0",
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
     "commitizen": "^4.2.3",
+    "cz-conventional-changelog": "3.3.0",
     "husky": "^5.1.3",
     "lint-staged": "^10.5.4"
   },
@@ -36,5 +35,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "dependencies": {}
 }
