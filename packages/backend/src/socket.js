@@ -2,6 +2,7 @@ import { Server } from 'socket.io'
 
 import database from './config/db.config'
 import messageController from './controllers/message.controller'
+import getMessages from './utils/getMessages'
 
 async function socket(httpServer){
 
@@ -13,17 +14,6 @@ async function socket(httpServer){
 
   if(database){
     console.log('Database connect with sucess')
-  }
-
-  async function getMessages(){
-    messageController.allMessages().then((res) => {
-      if(res.sucess){
-        io.emit('messages', res.messages)
-      }
-    })
-    .catch((err) => {
-      console.log(err)
-    })
   }
 
   io.on('connection', (socket) => {
