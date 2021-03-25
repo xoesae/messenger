@@ -20,17 +20,23 @@ if(database){
   console.log('Database connect with sucess')
 }
 
-let messages = []
+async function getMessages(){
+  messageController.allMessages().then((res) => {
+    if(res.sucess){
+      io.emit('messages', res.messages)
+    }
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+}
 
 io.on('connection', (socket) => {
-  io.emit('messages', messages)
+  getMessages().then()
 
   socket.on('message', (arg) => {
-    messageController.newMessage(arg).then((res) => {
-      console.log(res)
-    })
-    messages.push(arg)
-    io.emit('messages', messages)
+    messageController.newMessage(arg).then()
+    getMessages().then()
   })
 })
 
