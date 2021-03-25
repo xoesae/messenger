@@ -15,9 +15,9 @@ messageController.newMessage = async function (msg) {
   try{
     let message = new Message(msg)
     message = await message.save()
-    return message
+    return { sucess: true, message: 'message create with sucess' }
   } catch(err){
-    console.log(err)
+    return { sucess: false, message: 'an error ocurred', error: err }
   }
 }
 
