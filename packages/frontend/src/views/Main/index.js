@@ -41,17 +41,13 @@ function Main() {
   return (
     <Container>
       <Chat>
-        <Message>
-          <MessageAuthor>carlos</MessageAuthor>
-          <MessageText>My text</MessageText>
-        </Message>
-        {/*messages.map((msg, i) => {
-          if(msg.session === socket.id){
-            return (<Message key={i} author={0}>{msg.text}</Message>)
-          } else{
-            return (<Message key={i} author={1}>{msg.text}</Message>)
-          }
-        })*/}
+        {messages.map((msg, i) => {
+            return (
+              <Message key={i}>
+                <MessageAuthor>carlos</MessageAuthor>
+                <MessageText>{msg.text}</MessageText>
+              </Message>)
+        })}
       </Chat>
       <SendMessage>
         <Input
