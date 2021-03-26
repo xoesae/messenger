@@ -17,12 +17,15 @@ async function socket(httpServer){
   }
 
   io.on('connection', (socket) => {
-    getMessages
-
+    Promise.resolve(getMessages).then((messages) => {
+      io.emit('messages', messages)
+    })
     socket.on('message', (messageData) => {
       messageController.newMessage(messageData).then()
 
-      getMessages
+      Promise.resolve(getMessages).then((messages) => {
+        io.emit('messages', messages)
+      })
     })
   })
 }
