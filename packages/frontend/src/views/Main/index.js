@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Input, Button } from '@material-ui/core'
-import { Container, Chat, SendMessage, InputContainer, ButtonContainer, Message} from './style';
+import { Container, Chat, SendMessage, InputContainer, ButtonContainer, Message, Input, Button } from './style';
 
 import { io } from 'socket.io-client'
 const socket = io('http://localhost:3333')
@@ -51,18 +50,14 @@ function Main() {
         })}
       </Chat>
       <SendMessage>
-        <InputContainer>
-          <Input
-            type="text"
-            placeholder="Type a message"
-            inputRef={input}
-            onKeyUp={handleKeyUp}
-            onKeyPress={handleKeyPress}
+        <Input
+          type="text"
+          placeholder="Type a message"
+          inputRef={input}
+          onKeyUp={handleKeyUp}
+          onKeyPress={handleKeyPress}
           />
-        </InputContainer>
-        <ButtonContainer>
-          <Button onClick={handleClick}>Enviar</Button>
-        </ButtonContainer>
+        <Button onClick={handleClick}>Send</Button>
       </SendMessage>
     </Container>
   );
