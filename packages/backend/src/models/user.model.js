@@ -6,6 +6,6 @@ const userSchema = new Schema({
   status:  { type: String, required: true },
 } , {collection: 'users'})
 
-const User = model('User', messageSchema)
+const User = model('User', userSchema)
 
 export default User

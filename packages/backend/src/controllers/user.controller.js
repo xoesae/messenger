@@ -2,7 +2,7 @@ import User from '../models/user.model'
 
 const userController = {}
 
-messageController.newUser = async function(data) {
+userController.newUser = async function(data) {
   try{
     let user = new User(data)
     user = await user.save()
@@ -12,4 +12,4 @@ messageController.newUser = async function(data) {
   }
 }
 
-export default messageController
+export default userController
