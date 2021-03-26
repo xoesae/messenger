@@ -1,5 +1,5 @@
 import Message from '../models/message.model'
-
+import userController from './user.controller'
 const messageController = {}
 
 messageController.allMessages = async function () {
@@ -13,8 +13,14 @@ messageController.allMessages = async function () {
 
 messageController.newMessage = async function (msg) {
   try{
-    let message = new Message(msg)
-    message = await message.save()
+    const user = await userController.userExists(msg.author.name)
+
+    let message = new Message({
+      session: msg.session,
+      text: msg.text,
+      author: user._id
+    })
+    await message.save()
     return { sucess: true, message: 'message create with sucess' }
   } catch(err){
     return { sucess: false, message: 'an error ocurred', error: err }

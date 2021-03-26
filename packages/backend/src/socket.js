@@ -19,8 +19,9 @@ async function socket(httpServer){
   io.on('connection', (socket) => {
     getMessages
 
-    socket.on('message', (arg) => {
-      messageController.newMessage(arg).then()
+    socket.on('message', (messageData) => {
+      messageController.newMessage(messageData).then()
+
       getMessages
     })
   })
