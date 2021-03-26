@@ -17,11 +17,11 @@ async function socket(httpServer){
   }
 
   io.on('connection', (socket) => {
-    getMessages().then()
+    getMessages
 
     socket.on('message', (arg) => {
       messageController.newMessage(arg).then()
-      getMessages().then()
+      getMessages
     })
   })
 }
