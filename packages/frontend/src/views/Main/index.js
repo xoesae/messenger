@@ -7,7 +7,12 @@ const socket = io('http://localhost:3333')
 
 function Main() {
   const [messages, setMessages] = useState([])
-  const [message, setMessage] = useState({author: socket.id, text: ''})
+  const [message, setMessage] = useState({
+    session: socket.id,
+    text: '',
+    author: {
+      name: 'myuser'
+    }})
   let input = useRef(null)
 
   socket.on('connect', () => {
@@ -17,7 +22,7 @@ function Main() {
   })
 
   function handleKeyUp() {
-    setMessage({author: socket.id, text: input.current.value})
+    setMessage({session: socket.id, text: input.current.value, author: { name: 'myuser' }})
   }
 
   function handleClick(){
@@ -38,7 +43,7 @@ function Main() {
     <>
       <Container>
         {messages.map((msg, i) => {
-          if(msg.author === socket.id){
+          if(msg.session === socket.id){
             return (<Message key={i} author={0}>{msg.text}</Message>)
           } else{
             return (<Message key={i} author={1}>{msg.text}</Message>)
