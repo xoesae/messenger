@@ -27,7 +27,7 @@ function Main() {
   function handleClick(){
     if(!message.text.length === 0 || message.text.trim()){
       socket.emit('message', message)
-      input.current.text = ''
+      input.current.value = ''
       handleKeyUp()
     }
   }
@@ -53,7 +53,7 @@ function Main() {
         <Input
           type="text"
           placeholder="Type a message"
-          inputRef={input}
+          ref={input}
           onKeyUp={handleKeyUp}
           onKeyPress={handleKeyPress}
           />
