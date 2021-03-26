@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+  height: 100vh;
+  background-color: #333333;
+`;
+
+export const Chat = styled.div`
   height: 85vh;
 
   box-sizing: border-box;

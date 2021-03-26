@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Input, Button } from '@material-ui/core'
-import { Container, SendMessage, InputContainer, ButtonContainer, Message} from './style';
+import { Container, Chat, SendMessage, InputContainer, ButtonContainer, Message} from './style';
 
 import { io } from 'socket.io-client'
 const socket = io('http://localhost:3333')
@@ -40,8 +40,8 @@ function Main() {
   }
 
   return (
-    <>
-      <Container>
+    <Container>
+      <Chat>
         {messages.map((msg, i) => {
           if(msg.session === socket.id){
             return (<Message key={i} author={0}>{msg.text}</Message>)
@@ -49,7 +49,7 @@ function Main() {
             return (<Message key={i} author={1}>{msg.text}</Message>)
           }
         })}
-      </Container>
+      </Chat>
       <SendMessage>
         <InputContainer>
           <Input
@@ -64,7 +64,7 @@ function Main() {
           <Button onClick={handleClick}>Enviar</Button>
         </ButtonContainer>
       </SendMessage>
-    </>
+    </Container>
   );
 }
 
