@@ -5,6 +5,7 @@ const db = mongoose.connection
 mongoose.connect(
   `mongodb://localhost/${process.env.DB_NAME}`,
   {
+    useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
