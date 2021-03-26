@@ -2,6 +2,17 @@ import User from '../models/user.model'
 
 const userController = {}
 
+userController.userExists = async function(name){
+  let exists = await User.findOne({ name: name })
+  if(exists){
+    exists = true
+    return exists
+  } else{
+    exists = false
+    return exists
+  }
+}
+
 userController.newUser = async function(data) {
   try{
     let user = new User(data)
