@@ -10,8 +10,6 @@ export const Chat = styled.div`
 
   box-sizing: border-box;
   padding: 0 20px;
-
-  overflow: scroll;
 `;
 
 export const SendMessage = styled.div`
