@@ -42,6 +42,7 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   width: 10%;
+
   border: 1px solid;
   border-color: #FAFAFA;
   background-color: rgba(0, 0, 0, 0);
@@ -53,11 +54,22 @@ export const Button = styled.button`
 
 export const Message = styled.p`
   width: 50%;
-
   padding: 10px;
-  border-radius: 5px 5px 5px 0;
 
-  float: ${props => props.author === 0 ? 'right' : 'left'};
-  background-color: #2A5176;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const MessageAuthor = styled.p`
+  color: #0B9410;
+
+  &::after{
+    content: ':';
+    padding-right: 5px;
+  }
+`;
+
+export const MessageText = styled.p`
   color: #FAFAFA;
 `;

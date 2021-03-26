@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Container, Chat, SendMessage, Message, Input, Button } from './style';
+import { Container, Chat, SendMessage, Message, MessageAuthor, MessageText, Input, Button } from './style';
 
 import { io } from 'socket.io-client'
 const socket = io('http://localhost:3333')
@@ -41,13 +41,17 @@ function Main() {
   return (
     <Container>
       <Chat>
-        {messages.map((msg, i) => {
+        <Message>
+          <MessageAuthor>carlos</MessageAuthor>
+          <MessageText>My text</MessageText>
+        </Message>
+        {/*messages.map((msg, i) => {
           if(msg.session === socket.id){
             return (<Message key={i} author={0}>{msg.text}</Message>)
           } else{
             return (<Message key={i} author={1}>{msg.text}</Message>)
           }
-        })}
+        })*/}
       </Chat>
       <SendMessage>
         <Input
