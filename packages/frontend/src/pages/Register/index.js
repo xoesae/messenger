@@ -12,6 +12,7 @@ function Register() {
 
   socket.on('registered', arg => {
     if(arg.sucess){
+      window.localStorage.setItem('username', username)
       setRegistered(true)
     }
   })
