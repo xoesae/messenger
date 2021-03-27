@@ -13,7 +13,7 @@ messageController.allMessages = async function () {
 
 messageController.newMessage = async function (msg) {
   try{
-    const user = await userController.userExists(msg.author.name)
+    const user = await userController.getUser(msg.author)
 
     let message = new Message({
       session: msg.session,

@@ -26,4 +26,12 @@ userController.newUser = async function(data) {
   }
 }
 
+userController.getUser = async function(name){
+  const res = await userController.userExists(name)
+  if(res.exists){
+    let user = await User.findOne({ name: name })
+    return user
+  }
+}
+
 export default userController
