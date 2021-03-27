@@ -5,8 +5,8 @@ async function createUser(username){
   if(exists){
     return { sucess: true }
   } else{
-    const user = userController.newUser({ name: username, status: 'online' })
-    return user
+    const res = userController.newUser({ name: username, status: 'online' })
+    return res
   }
 }
 
