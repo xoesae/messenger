@@ -29,7 +29,6 @@ function Main() {
 
   function handleClick(){
     if(!message.text.length === 0 || message.text.trim()){
-      console.log(message)
       socket.emit('message', message)
       input.current.value = ''
       handleKeyUp()
