@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { Redirect } from 'react-router-dom'
 import { Container, Modal, Title, Input, Button } from './style'
 
 import { io } from 'socket.io-client'
@@ -6,10 +7,13 @@ const socket = io('http://localhost:3333')
 
 function Register() {
   const [username, setUsername] = useState()
+  const [registered, setRegistered] = useState(false)
   let input = useRef(null)
 
   socket.on('registered', arg => {
-    console.log(arg)
+    if(arg.sucess){
+      setRegistered(true)
+    }
   })
 
   function handleKeyUp() {
@@ -29,25 +33,33 @@ function Register() {
   }
 
   return (
-    <Container>
-      <Modal>
-        <Title>
-          Welcome
-        </Title>
-        <Input
-          type="text"
-          placeholder="Type your username"
-          ref={input}
-          onKeyUp={handleKeyUp}
-          onKeyPress={handleKeyPress}
-        />
-        <Button
-          onClick={handleClick}
-        >
-          Enter
-        </Button>
-      </Modal>
-    </Container>
+    <>
+    {
+      registered ? (
+        <Redirect to="/"/>
+      ) : (
+        <Container>
+          <Modal>
+            <Title>
+              Welcome
+            </Title>
+            <Input
+              type="text"
+              placeholder="Type your username"
+              ref={input}
+              onKeyUp={handleKeyUp}
+              onKeyPress={handleKeyPress}
+            />
+            <Button
+              onClick={handleClick}
+            >
+              Enter
+            </Button>
+          </Modal>
+          </Container>
+      )
+    }
+    </>
   );
 }
 
