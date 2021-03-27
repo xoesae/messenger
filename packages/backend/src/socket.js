@@ -16,15 +16,18 @@ async function socket(httpServer){
     console.log('Database connect with sucess')
   }
 
-  io.on('connection', (socket) => {
-    Promise.resolve(getMessages).then((messages) => {
+  io.on('connection', async (socket) => {
+    Promise.resolve(getMessages()).then(messages => {
       io.emit('messages', messages)
     })
-    socket.on('message', (messageData) => {
-      messageController.newMessage(messageData).then()
 
-      Promise.resolve(getMessages).then((messages) => {
-        io.emit('messages', messages)
+    socket.on('message', (messageData) => {
+      messageController.newMessage(messageData).then((res) => {
+        if(res.sucess){
+          Promise.resolve(getMessages()).then(messages => {
+            io.emit('messages', messages)
+          })
+        }
       })
     })
   })

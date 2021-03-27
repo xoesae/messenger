@@ -20,8 +20,8 @@ messageController.newMessage = async function (msg) {
       text: msg.text,
       author: user._id
     })
-    await message.save()
-    return { sucess: true, message: 'message create with sucess' }
+    let messageSave = await message.save()
+    return { sucess: true, message: 'message create with sucess', messageSave: messageSave }
   } catch(err){
     return { sucess: false, message: 'an error ocurred', error: err }
   }
