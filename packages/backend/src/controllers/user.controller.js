@@ -5,9 +5,9 @@ const userController = {}
 userController.userExists = async function(name){
   let exists = await User.findOne({ name: name })
   if(exists){
-    return exists
+    return { exists: true }
   } else{
-    return exists
+    return { exists: false }
   }
 }
 
