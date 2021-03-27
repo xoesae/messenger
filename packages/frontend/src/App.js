@@ -1,4 +1,4 @@
-import Main from './views/Main';
+import Main from './pages/Main';
 import './css/reset.css';
 import './css/global.css'
 
