@@ -9,11 +9,9 @@ function Main() {
   const [message, setMessage] = useState({
     session: socket.id,
     text: '',
-    author: {
-      name: 'myuser'
-    }})
+    author: window.localStorage.getItem('username')
+  })
   let input = useRef(null)
-
   socket.on('connect', () => {
     socket.on('messages', (arg) => {
       setMessages(arg)
@@ -21,11 +19,17 @@ function Main() {
   })
 
   function handleKeyUp() {
-    setMessage({session: socket.id, text: input.current.value, author: { name: 'myuser' }})
+    const username = window.localStorage.getItem('username')
+    setMessage({
+      session: socket.id,
+      text: input.current.value,
+      author: username
+    })
   }
 
   function handleClick(){
     if(!message.text.length === 0 || message.text.trim()){
+      console.log(message)
       socket.emit('message', message)
       input.current.value = ''
       handleKeyUp()
@@ -44,7 +48,7 @@ function Main() {
         {messages.map((msg, i) => {
             return (
               <Message key={i}>
-                <MessageAuthor>carlos</MessageAuthor>
+                <MessageAuthor>{msg.author}</MessageAuthor>
                 <MessageText>{msg.text}</MessageText>
               </Message>)
         })}
