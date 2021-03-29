@@ -1,19 +1,16 @@
 import React, { useState, useRef } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Container, Modal, Title, Input, Button } from './style'
-
-import { io } from 'socket.io-client'
-const socket = io('http://localhost:3333')
+import socket from '../../services/socket'
 
 function Register() {
   const [username, setUsername] = useState()
   const [registered, setRegistered] = useState(false)
   let input = useRef(null)
 
-  socket.on('registered', arg => {
-    if(arg.sucess){
-      window.localStorage.setItem('username', username)
-      setRegistered(true)
+  socket.on('registered', res => {
+    if(res.sucess){
+      //window.localStorage.setItem('id', res.user._id)
     }
   })
 
