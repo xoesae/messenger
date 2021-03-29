@@ -10,7 +10,8 @@ function Register() {
 
   socket.on('registered', res => {
     if(res.sucess){
-      //window.localStorage.setItem('id', res.user._id)
+      localStorage.setItem('id', res.user._id)
+      setRegistered(true)
     }
   })
 
