@@ -34,4 +34,9 @@ userController.getUser = async function(name){
   }
 }
 
+userController.getUserById = async function(userId) {
+  let user = await User.findById(userId)
+  return user.name
+}
+
 export default userController

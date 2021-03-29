@@ -26,6 +26,15 @@ async function socket(httpServer){
       })
     })
 
+    socket.on('authuser', async userId => {
+      const name = await userController.getUserById(userId)
+      if(name){
+        socket.emit('authuser', { auth: true })
+      } else{
+        socket.emit('authuser', { auth: true })
+      }
+    })
+
     socket.on('message', message => {
       messageController.newMessage(message).then((res) => {
         if(res.sucess){
