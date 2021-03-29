@@ -1,8 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Container, Chat, SendMessage, Message, MessageAuthor, MessageText, Input, Button } from './style';
-
-import { io } from 'socket.io-client'
-const socket = io('http://localhost:3333')
+import socket from '../../services/socket'
 
 function Main() {
   const [messages, setMessages] = useState([])
@@ -11,11 +9,11 @@ function Main() {
     text: '',
     author: window.localStorage.getItem('username')
   })
+
   let input = useRef(null)
-  socket.on('connect', () => {
-    socket.on('messages', (arg) => {
-      setMessages(arg)
-    })
+
+  socket.on('messages', (arg) => {
+    setMessages(arg)
   })
 
   function handleKeyUp() {
