@@ -4,10 +4,16 @@ async function createUser(username){
   try{
     let res = await userController.userExists(username)
     if(res.exists){
-      return { sucess: true }
+      let user = await userController.getUser(username)
+      return { sucess: true, user: user }
     } else{
       res = userController.newUser({ name: username, status: 'online' })
-      return res
+      if(res.sucess){
+        let user = await userController.getUser(username)
+        return { sucess: true, user: user }
+      } else{
+        return res
+      }
     }
   } catch(err){
     console.log(err)

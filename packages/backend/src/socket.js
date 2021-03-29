@@ -18,10 +18,7 @@ async function socket(httpServer){
     console.log('Database connect with sucess')
   }
 
-  io.on('connection', async (socket) => {
-    Promise.resolve(getMessages()).then(messages => {
-      io.emit('messages', messages)
-    })
+  io.on('connection', async socket => {
 
     socket.on('register', username => {
       createUser(username).then(res => {
@@ -29,8 +26,8 @@ async function socket(httpServer){
       })
     })
 
-    socket.on('message', (messageData) => {
-      messageController.newMessage(messageData).then((res) => {
+    socket.on('message', message => {
+      messageController.newMessage(message).then((res) => {
         if(res.sucess){
           Promise.resolve(getMessages()).then(messages => {
             io.emit('messages', messages)
