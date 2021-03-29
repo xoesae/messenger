@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Container, Chat, SendMessage, Message, MessageAuthor, MessageText, Input, Button } from './style';
 import socket from '../../services/socket'
 
@@ -11,6 +11,17 @@ function Main() {
   })
 
   let input = useRef(null)
+
+  useEffect(() => {
+    const userId = localStorage.getItem('id')
+    socket.emit('authuser', userId)
+  }, [])
+
+  socket.on('authuser', res => {
+    if(!res.auth){
+      console.log(res, 'teste')
+    }
+  })
 
   socket.on('messages', (arg) => {
     setMessages(arg)
