@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
 import { Container, Chat, SendMessage, Message, MessageAuthor, MessageText, Input, Button } from './style';
 import socket from '../../services/socket'
 
@@ -7,19 +8,21 @@ function Main() {
   const [message, setMessage] = useState({
     session: socket.id,
     text: '',
-    author: window.localStorage.getItem('username')
+    author: localStorage.getItem('id')
   })
 
   let input = useRef(null)
+  let history = useHistory()
 
   useEffect(() => {
     const userId = localStorage.getItem('id')
     socket.emit('authuser', userId)
   }, [])
 
+
   socket.on('authuser', res => {
     if(!res.auth){
-      console.log(res, 'teste')
+      history.push(`/register`)
     }
   })
 
@@ -58,7 +61,8 @@ function Main() {
               <Message key={i}>
                 <MessageAuthor>{msg.author}</MessageAuthor>
                 <MessageText>{msg.text}</MessageText>
-              </Message>)
+              </Message>
+            )
         })}
       </Chat>
       <SendMessage>
