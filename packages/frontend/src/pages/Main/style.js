@@ -5,13 +5,13 @@ export const Container = styled.div`
   background-color: #333333;
 
   box-sizing: border-box;
-`;
+`
 
 export const Chat = styled.div`
   height: 85vh;
 
   padding: 0 20px;
-`;
+`
 
 export const SendMessage = styled.div`
   width: 100%;
@@ -27,30 +27,30 @@ export const SendMessage = styled.div`
   bottom: 0;
 
   padding: 0 20px 50px;
-`;
+`
 
 export const Input = styled.input`
   width: 90%;
 
   border: 1px solid;
-  border-color: #FAFAFA;
+  border-color: #fafafa;
   background-color: rgba(0, 0, 0, 0);
-  color: #FAFAFA;
+  color: #fafafa;
 
   padding: 10px;
-`;
+`
 
 export const Button = styled.button`
   width: 10%;
 
   border: 1px solid;
-  border-color: #FAFAFA;
+  border-color: #fafafa;
   background-color: rgba(0, 0, 0, 0);
-  color: #FAFAFA;
+  color: #fafafa;
 
   padding: 10px;
   margin-left: 5px;
-`;
+`
 
 export const Message = styled.p`
   width: 50%;
@@ -59,17 +59,17 @@ export const Message = styled.p`
   display: flex;
   flex-direction: row;
   align-items: center;
-`;
+`
 
 export const MessageAuthor = styled.p`
-  color: #0B9410;
+  color: #0b9410;
 
-  &::after{
+  &::after {
     content: ':';
     padding-right: 5px;
   }
-`;
+`
 
 export const MessageText = styled.p`
-  color: #FAFAFA;
-`;
+  color: #fafafa;
+`

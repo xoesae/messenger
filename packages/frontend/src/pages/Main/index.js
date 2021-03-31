@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Container, Chat, SendMessage, Message, MessageAuthor, MessageText, Input, Button } from './style';
+import { Container, Chat, SendMessage, Message, MessageAuthor, MessageText, Input, Button } from './style'
 import socket from '../../services/socket'
 
 function Main() {
@@ -19,14 +19,13 @@ function Main() {
     socket.emit('authuser', userId)
   }, [])
 
-
   socket.on('authuser', res => {
-    if(!res.auth){
+    if (!res.auth) {
       history.push(`/register`)
     }
   })
 
-  socket.on('messages', (arg) => {
+  socket.on('messages', arg => {
     setMessages(arg)
   })
 
@@ -39,16 +38,16 @@ function Main() {
     })
   }
 
-  function handleClick(){
-    if(!message.text.length === 0 || message.text.trim()){
+  function handleClick() {
+    if (!message.text.length === 0 || message.text.trim()) {
       socket.emit('message', message)
       input.current.value = ''
       handleKeyUp()
     }
   }
 
-  function handleKeyPress(event){
-    if(event.key === 'Enter'){
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
       handleClick()
     }
   }
@@ -57,26 +56,20 @@ function Main() {
     <Container>
       <Chat>
         {messages.map((msg, i) => {
-            return (
-              <Message key={i}>
-                <MessageAuthor>{msg.author}</MessageAuthor>
-                <MessageText>{msg.text}</MessageText>
-              </Message>
-            )
+          return (
+            <Message key={i}>
+              <MessageAuthor>{msg.author}</MessageAuthor>
+              <MessageText>{msg.text}</MessageText>
+            </Message>
+          )
         })}
       </Chat>
       <SendMessage>
-        <Input
-          type="text"
-          placeholder="Type a message"
-          ref={input}
-          onKeyUp={handleKeyUp}
-          onKeyPress={handleKeyPress}
-          />
+        <Input type="text" placeholder="Type a message" ref={input} onKeyUp={handleKeyUp} onKeyPress={handleKeyPress} />
         <Button onClick={handleClick}>Send</Button>
       </SendMessage>
     </Container>
-  );
+  )
 }
 
-export default Main;
+export default Main

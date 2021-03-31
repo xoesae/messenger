@@ -9,7 +9,7 @@ function Register() {
   let input = useRef(null)
 
   socket.on('registered', res => {
-    if(res.sucess){
+    if (res.sucess) {
       localStorage.setItem('id', res.user._id)
       setRegistered(true)
     }
@@ -19,47 +19,33 @@ function Register() {
     setUsername(input.current.value)
   }
 
-  function handleClick(){
-    if(!username.length === 0 || username.trim()){
+  function handleClick() {
+    if (!username.length === 0 || username.trim()) {
       socket.emit('register', username)
     }
   }
 
-  function handleKeyPress(event){
-    if(event.key === 'Enter'){
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
       handleClick()
     }
   }
 
   return (
     <>
-    {
-      registered ? (
-        <Redirect to="/"/>
+      {registered ? (
+        <Redirect to="/" />
       ) : (
         <Container>
           <Modal>
-            <Title>
-              Welcome
-            </Title>
-            <Input
-              type="text"
-              placeholder="Type your username"
-              ref={input}
-              onKeyUp={handleKeyUp}
-              onKeyPress={handleKeyPress}
-            />
-            <Button
-              onClick={handleClick}
-            >
-              Enter
-            </Button>
+            <Title>Welcome</Title>
+            <Input type="text" placeholder="Type your username" ref={input} onKeyUp={handleKeyUp} onKeyPress={handleKeyPress} />
+            <Button onClick={handleClick}>Enter</Button>
           </Modal>
-          </Container>
-      )
-    }
+        </Container>
+      )}
     </>
-  );
+  )
 }
 
-export default Register;
+export default Register
