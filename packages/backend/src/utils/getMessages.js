@@ -1,15 +1,15 @@
 import messageController from '../controllers/message.controller'
 
-async function getMessages(){
-  try{
+async function getMessages() {
+  try {
     const res = await messageController.allMessages()
 
-    if(res.sucess){
+    if (res.sucess) {
       return res.messages
-    } else{
+    } else {
       console.log(res)
     }
-  } catch(err){
+  } catch (err) {
     console.log(err)
   }
 }

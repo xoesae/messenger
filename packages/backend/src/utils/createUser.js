@@ -1,21 +1,21 @@
 import userController from '../controllers/user.controller'
 
-async function createUser(username){
-  try{
+async function createUser(username) {
+  try {
     let res = await userController.userExists(username)
-    if(res.exists){
-      let user = await userController.getUser(username)
+    if (res.exists) {
+      const user = await userController.getUser(username)
       return { sucess: true, user: user }
-    } else{
+    } else {
       res = userController.newUser({ name: username, status: 'online' })
-      if(res.sucess){
-        let user = await userController.getUser(username)
+      if (res.sucess) {
+        const user = await userController.getUser(username)
         return { sucess: true, user: user }
-      } else{
+      } else {
         return res
       }
     }
-  } catch(err){
+  } catch (err) {
     console.log(err)
   }
 }

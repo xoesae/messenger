@@ -1,19 +1,22 @@
 import mongoose from 'mongoose'
 const { Schema, model } = mongoose
 
-const userSchema = new Schema({
-  name: {
-    type: String,
-    unique: true,
-    require: true
+const userSchema = new Schema(
+  {
+    name: {
+      type: String,
+      unique: true,
+      require: true
+    },
+    status: {
+      type: String,
+      require: true
+    }
   },
-  status:  {
-    type: String,
-    require: true
+  {
+    collection: 'users'
   }
-} , {
-  collection: 'users'
-})
+)
 
 const User = model('User', userSchema)
 

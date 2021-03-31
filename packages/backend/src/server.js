@@ -1,6 +1,6 @@
-require('dotenv').config()
 import { createServer } from 'http'
 import socket from './socket'
+require('dotenv').config()
 
 const PORT = process.env.PORT || 3333
 const httpServer = createServer()
