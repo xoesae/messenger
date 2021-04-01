@@ -1,6 +1,4 @@
-import mongoose from 'mongoose'
-import User from './user.model'
-const { Schema, model } = mongoose
+import mongoose, { Schema } from 'mongoose'
 
 const messageSchema = new Schema(
   {
@@ -18,10 +16,11 @@ const messageSchema = new Schema(
     }
   },
   {
-    collection: 'messages'
+    collection: 'messages',
+    timestamps: true
   }
 )
 
-const Message = model('Message', messageSchema)
+const Message = mongoose.model('Message', messageSchema)
 
 export default Message

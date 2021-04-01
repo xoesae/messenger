@@ -3,17 +3,13 @@ module.exports = {
     es2021: true,
     node: true
   },
-  extends: [
-    'standard',
-    'eslint:recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['standard', 'eslint:recommended', 'plugin:prettier/recommended'],
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module'
   },
   plugins: ['prettier', 'eslint-plugin-import-helpers'],
   rules: {
-    "prettier/prettier": "error",
+    'prettier/prettier': 'error'
   }
 }
