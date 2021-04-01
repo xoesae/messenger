@@ -35,8 +35,12 @@ userController.getUser = async function (name) {
 }
 
 userController.getUserById = async function (userId) {
-  const user = await User.findById(userId)
-  return user.name
+  if (userId) {
+    const user = await User.findById(userId)
+    return { sucess: true, name: user.name }
+  } else {
+    return { sucess: false }
+  }
 }
 
 export default userController

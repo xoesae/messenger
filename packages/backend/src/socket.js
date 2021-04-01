@@ -25,11 +25,11 @@ async function socket(httpServer) {
     })
 
     socket.on('authuser', async userId => {
-      const name = await userController.getUserById(userId)
-      if (name) {
+      const res = await userController.getUserById(userId)
+      if (res.sucess) {
         socket.emit('authuser', { auth: true })
       } else {
-        socket.emit('authuser', { auth: true })
+        socket.emit('authuser', { auth: false })
       }
     })
 
