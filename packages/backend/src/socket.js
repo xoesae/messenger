@@ -18,10 +18,9 @@ async function socket(httpServer) {
   }
 
   io.on('connection', async socket => {
-    socket.on('register', username => {
-      createUser(username).then(res => {
-        socket.emit('registered', res)
-      })
+    socket.on('register', async username => {
+      const res = await createUser(username)
+      socket.emit('registered', res)
     })
 
     socket.on('authuser', async userId => {
