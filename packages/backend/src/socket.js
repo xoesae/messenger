@@ -19,7 +19,7 @@ async function socket(httpServer) {
 
   io.on('connection', async socket => {
     socket.on('register', async username => {
-      const res = await createUser(username)
+      const res = await userController.newUser({ name: username, status: 'online' })
       socket.emit('registered', res)
     })
 

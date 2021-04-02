@@ -13,13 +13,14 @@ userController.userExists = async function (name) {
 
 userController.newUser = async function (data) {
   try {
-    const exists = await this.userExists(data.name)
-    if (exists) {
+    const res = await this.userExists(data.name)
+    if (res.exists) {
+      const getUser = await userController.getUser(data.name)
+      return { sucess: true, user: getUser }
+    } else {
       const user = new User(data)
       await user.save()
-      return { sucess: true, message: 'user create with sucess' }
-    } else {
-      return { sucess: false, message: 'this user already exists' }
+      return { sucess: true, user: user }
     }
   } catch (err) {
     return { sucess: false, message: 'an error ocurred', error: err }
