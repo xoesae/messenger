@@ -13,12 +13,10 @@ messageController.allMessages = async function () {
 
 messageController.newMessage = async function (msg) {
   try {
-    const user = await userController.getUser(msg.author)
-
     const message = new Message({
       session: msg.session,
       text: msg.text,
-      author: user._id
+      author: msg.author
     })
     const messageSave = await message.save()
     return { sucess: true, message: 'message create with sucess', messageSave: messageSave }
