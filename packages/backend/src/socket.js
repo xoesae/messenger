@@ -4,7 +4,6 @@ import database from './config/db.config'
 import messageController from './controllers/message.controller'
 import userController from './controllers/user.controller'
 import getMessages from './utils/getMessages'
-import createUser from './utils/createUser'
 
 async function socket(httpServer) {
   const io = new Server(httpServer, {
