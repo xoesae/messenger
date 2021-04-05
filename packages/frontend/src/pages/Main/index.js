@@ -30,11 +30,10 @@ function Main() {
   })
 
   function handleKeyUp() {
-    const username = window.localStorage.getItem('username')
     setMessage({
       session: socket.id,
       text: input.current.value,
-      author: username
+      author: window.localStorage.getItem('id')
     })
   }
 
