@@ -35,7 +35,21 @@ async function socket(httpServer) {
       messageController.newMessage(message).then(res => {
         if (res.sucess) {
           Promise.resolve(getMessages()).then(messages => {
-            io.emit('messages', messages)
+            function mapingMessages() {
+              return messages.map(async j => {
+                const msg = {}
+                const id = j.author
+                const res = await userController.getUserById(id)
+                if (res.sucess) {
+                  msg.text = j.text
+                  msg.author = res.name
+                  return msg
+                }
+              })
+            }
+            Promise.all(mapingMessages()).then(res => {
+              io.emit('messages', res)
+            })
           })
         }
       })
