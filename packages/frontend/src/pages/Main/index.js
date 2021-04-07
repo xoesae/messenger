@@ -22,6 +22,8 @@ function Main() {
   socket.on('authuser', res => {
     if (!res.auth) {
       history.push(`/register`)
+    } else {
+      socket.emit('getmessages')
     }
   })
 
