@@ -51,6 +51,10 @@ async function socket(httpServer) {
       }
     })
 
+    socket.on('getmessages', () => {
+      returningMessage()
+    })
+
     socket.on('message', message => {
       messageController.newMessage(message).then(res => {
         if (res.sucess) {
