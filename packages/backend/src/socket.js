@@ -17,6 +17,26 @@ async function socket(httpServer) {
   }
 
   io.on('connection', async socket => {
+    function returningMessage() {
+      Promise.resolve(getMessages()).then(messages => {
+        function mapingMessages() {
+          return messages.map(async j => {
+            const msg = {}
+            const id = j.author
+            const res = await userController.getUserById(id)
+            if (res.sucess) {
+              msg.text = j.text
+              msg.author = res.name
+              return msg
+            }
+          })
+        }
+        Promise.all(mapingMessages()).then(res => {
+          io.emit('messages', res)
+        })
+      })
+    }
+
     socket.on('register', async username => {
       const res = await userController.newUser({ name: username, status: 'online' })
       socket.emit('registered', res)
@@ -34,23 +54,7 @@ async function socket(httpServer) {
     socket.on('message', message => {
       messageController.newMessage(message).then(res => {
         if (res.sucess) {
-          Promise.resolve(getMessages()).then(messages => {
-            function mapingMessages() {
-              return messages.map(async j => {
-                const msg = {}
-                const id = j.author
-                const res = await userController.getUserById(id)
-                if (res.sucess) {
-                  msg.text = j.text
-                  msg.author = res.name
-                  return msg
-                }
-              })
-            }
-            Promise.all(mapingMessages()).then(res => {
-              io.emit('messages', res)
-            })
-          })
+          returningMessage()
         }
       })
     })
